@@ -167,41 +167,41 @@ namespace Sage300UnitsExport
             session.Company = Properties.Settings.Default.company;
             session.UserName = Properties.Settings.Default.sageuser;
             session.Password = Properties.Settings.Default.sagepassword;
-            //Console.WriteLine("TC:A");
+            Console.WriteLine("TC:A");
             ConnectionProvider.EstablishCompanyConnections(session);
-           // Console.WriteLine("TC:B");
+            Console.WriteLine("TC:B");
             ts = TransactionServiceFactory.CreateTransactionService(session, "4DEB77A7-D9CD-4560-A52D-088AF3020D9A");
-           // Console.WriteLine("TC:C");
+            Console.WriteLine("TC:C");
             ws = new WorkingSet();
             Console.WriteLine("TC:D");
             ws.MessageBoard(WorkingSetScope.AppDomain).TargetCache.AddRunningTarget(JctConstants.ClosedJobWarningMessageTargetId, this);
-           // Console.WriteLine("TC:E");
+            Console.WriteLine("TC:E");
             Hashtable parameters = new Hashtable();
-           // Console.WriteLine("TC:F");
+            Console.WriteLine("TC:F");
             parameters.Add(JctConstants.ParamNewJctFile, "new.jct");
-           // Console.WriteLine("TC:G");
+            Console.WriteLine("TC:G");
             parameters.Add(JctConstants.ParamCurrentJctFile, "current.jct");
-           // Console.WriteLine("TC:H");
+            Console.WriteLine("TC:H");
             ws.AddValue(Sage.STO.TransactionService.TransactionService.EntityParametersKey, parameters);
-           // Console.WriteLine("TC:I");
+            Console.WriteLine("TC:I");
             batch = ts.CreateTransactionBatch(JctConstants.TransactionServiceTypes.MiscTransactions,
                                                                JctConstants.Security.MiscTransactions,
                                                                ws,
                                                                "DP", // origin
                                                                "About Time Tech"); // source description
-            //Console.WriteLine("TC:J");
+            Console.WriteLine("TC:J");
             try
             {
                 batch.Transactions.Tables[JctConstants.DataSetTransactionTableName].Columns[JctConstants.JctColumnNames.TransactionType].DefaultValue = JctConstants.TransactionTypes.ProductionUnitsInPlace;
-                //Console.WriteLine("TC:K");
+                Console.WriteLine("TC:K");
             }
             catch (Exception)
             {
                 Console.WriteLine("Not Enough Users.");//Not enough users error!
             }
-           // Console.WriteLine("TC:L");
+            Console.WriteLine("TC:L");
             jctRow = batch.Transactions.Tables[JctConstants.DataSetTransactionTableName].NewRow();
-            //Console.WriteLine("TC:M");
+            Console.WriteLine("TC:M");
 
         }
 
